@@ -1,7 +1,5 @@
 # Jmm Compiler
 
-## Group elements
-
 ## Summary
 Our compiler takes `jmm` code, a subset of the `Java` language, and outputs `ollir`, an in-house intermediate code representation, and `jasmin`, a `JVM` stack-based language which can be run directly by the `JRE`.
 
@@ -111,21 +109,6 @@ It is thus quite difficult to infer the types of complex, external nested method
 In terms of code organization, we feel that the `OllirEmitter` class has become quite large; we could have split its responsibilities in more files, which would raise state management challenges, but greatly improve the legibility.
 
 ### Optimizations at the `ollir` level
-
-#### Register Allocation
-
-After generating the OllirResult, if the "-r" option is used, the *register allocation optimization* is performed to each method.
-
-First, the algorithm starts by using our implementation of the algorithm *liveliness analysis* which uses *dataflow analysis* to determine the lifetime of local variables. After that, it constructs the *Interference Graph*, a HashMap where it's saved all variables and for each variable, a set of variables representing all the others variables that have an intersecting lifetimes.
-Unfortunately, there is some error we couldn't fix, so the algorithm is not at the 100%.
-
-Then, uses *Graph Coloring* to allocate registers and builds a new varTable for the method, updating each variable's virtual register.
-
-If the specified number of registers isn't enough to store all the variables, the program aborts and reports an error, showing the minimum number of registers needed.
-
-If the specified number of registers is zero, then the program uses the number of registers needed to finish the allocation.
-
-Unfortunately, the algorithm does not work correctly all the times. There are some issues regarding the calculation of the life-time of the variables, on set of out variables and in variables.
 
 ### `Jasmin` generation
 
