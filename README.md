@@ -2,17 +2,6 @@
 
 ## Group elements
 
-### Group 9B
-
-| Name              | Number    | Self-evaluation | Contribution | Performed work                                                                            |
-|-------------------|-----------|-----------------|--------------|-------------------------------------------------------------------------------------------|
-| **Bruno Mendes**  | 201906166 | 19              | 28%          | Grammar, symbol table generation, `ollir` generation, constant propagation optimization   |
-| **David Preda**   | 201904726 | 19              | 28%          | Grammar, symbol table generation, `jasmin` generation, instruction selection optimization |
-| **Fernando Rego** | 201905951 | 19              | 28%          | Grammar, symbol table generation, semantic analysis                                       |
-| **Miguel Amorim** | 201907756 | 16              | 16%          | Grammar, register allocation optimization                                                 |
-
-#### Global self-evaluation of the project: 19
-
 ## Summary
 Our compiler takes `jmm` code, a subset of the `Java` language, and outputs `ollir`, an in-house intermediate code representation, and `jasmin`, a `JVM` stack-based language which can be run directly by the `JRE`.
 
