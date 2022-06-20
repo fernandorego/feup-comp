@@ -1,18 +1,5 @@
 # Jmm Compiler
 
-## Group elements
-
-### Group 9B
-
-| Name              | Number    | Self-evaluation | Contribution | Performed work                                                                            |
-|-------------------|-----------|-----------------|--------------|-------------------------------------------------------------------------------------------|
-| **Bruno Mendes**  | 201906166 | TBD             | 28%          | Grammar, symbol table generation, `ollir` generation, constant propagation optimization   |
-| **David Preda**   | 201904726 | TBD             | 28%          | Grammar, symbol table generation, `jasmin` generation, instruction selection optimization |
-| **Fernando Rego** | 201905951 | TBD             | 28%          | Grammar, symbol table generation, semantic analysis                                       |
-| **Miguel Amorim** | 201907756 | TBD             | 16%          | Grammar, register allocation optimization                                                 |
-
-#### Global self-evaluation of the project: 19
-
 ## Summary
 Our compiler takes `jmm` code, a subset of the `Java` language, and outputs `ollir`, an in-house intermediate code representation, and `jasmin`, a `JVM` stack-based language which can be run directly by the `JRE`.
 
@@ -121,9 +108,6 @@ It is thus quite difficult to infer the types of complex, external nested method
 
 In terms of code organization, we feel that the `OllirEmitter` class has become quite large; we could have split its responsibilities in more files, which would raise state management challenges, but greatly improve the legibility.
 
-### Optimizations at the `ollir` level
-@poker
-
 ### `Jasmin` generation
 
 `jasmin` is an assembler for the JVM. Therefore, in order for this compiler to generate the required bytecodes, the `ollir` instructions must be translated to `jasmin` instructions.
@@ -155,7 +139,7 @@ In terms of the code architecture, we are confident that our pipeline is simple 
 
 > While supporting other operators such as `>`, `!=`, or `==` would be a breeze, an addition like assignments in declarations would not be so difficult, too.
  
-While we implemented the required register allocation and constant propagation optimizations, we would like to point out the bigger feature set of the latter, given that it removes declarations and assignments of constant propagated variables, as explained above.
+While we implemented the required register allocation and constant propagation optimizations, we would like to point out the bigger feature set of the latter, given that it removes some dead code, as explained above.
 
 As a whole, we were able to run in the JVM all `jmm` code samples, including complex ones such as *TicTacToe* or *Life*.
 It was interesting to see that *Life.jmm* contained a field named *field*, which initially raised confusion at the Jasmin level, and proved the need for our AST disambiguation traversal.
@@ -163,3 +147,14 @@ Also, the `WhileAndIf` sample provided contained a public class named `WhileAndI
 
 ## Possible improvements
 Beside the already mentioned large size of some important classes, and the lack of a bigger optimization pipeline, we feel that our work could be much improved if we added more features to the base `jmm` language, such as method overloading, string literals or class constructor customizations.
+
+## Compile and Running
+
+To compile and install the program, run ``gradle installDist``. This will compile your classes and create a launcher script in the folder ``./build/install/comp2022-9b/bin``. For convenience, there are two script files, one for Windows (``comp2022-9b.bat``) and another for Linux (``comp2022-9b``), in the root folder, that call tihs launcher script.
+
+After compilation, a series of tests will be automatically executed. The build will stop if any test fails. Whenever you want to ignore the tests and build the program anyway, you can call Gradle with the flag ``-x test``.
+
+## Test
+
+To test the program, run ``gradle test``. This will execute the build, and run the JUnit tests in the ``test`` folder. If you want to see output printed during the tests, use the flag ``-i`` (i.e., ``gradle test -i``).
+You can also see a test report by opening ``./build/reports/tests/test/index.html``.
