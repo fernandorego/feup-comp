@@ -108,8 +108,6 @@ It is thus quite difficult to infer the types of complex, external nested method
 
 In terms of code organization, we feel that the `OllirEmitter` class has become quite large; we could have split its responsibilities in more files, which would raise state management challenges, but greatly improve the legibility.
 
-### Optimizations at the `ollir` level
-
 ### `Jasmin` generation
 
 `jasmin` is an assembler for the JVM. Therefore, in order for this compiler to generate the required bytecodes, the `ollir` instructions must be translated to `jasmin` instructions.
