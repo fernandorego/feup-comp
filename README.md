@@ -114,7 +114,7 @@ In terms of code organization, we feel that the `OllirEmitter` class has become 
 
 The `JmmBackend` class is responsible for handling the full translation of a `.ollir` file into a `.j` file. It starts by the class and super directives, defaulting to `Object` as a super class if none is given. The fields are also translated by this class.
 
-> If no access modifier is provided, `JmmBacked` will default a class field to private, in order to maximize security.
+> If no access modifier is provided, `JmmBackend` will default a class field to private, in order to maximize security.
 
 The `MethodDefinitionGenerator` class takes a `Method` object and translates it into a `jasmin` method definition. It is responsible for generating the method header, which includes its descriptor, and for calculating the `.limit stack` and `.limit locals` values (the latter with help from the `Instruction Translator` class).
 
@@ -150,7 +150,7 @@ Beside the already mentioned large size of some important classes, and the lack 
 
 ## Compile and Running
 
-To compile and install the program, run ``gradle installDist``. This will compile your classes and create a launcher script in the folder ``./build/install/comp2022-9b/bin``. For convenience, there are two script files, one for Windows (``comp2022-9b.bat``) and another for Linux (``comp2022-9b``), in the root folder, that call tihs launcher script.
+To compile and install the program, run ``gradle installDist``. This will compile your classes and create a launcher script in the folder ``./build/install/comp2022-9b/bin``. For convenience, there are two script files, one for Windows (``comp2022-9b.bat``) and another for Linux (``comp2022-9b``), in the root folder, that calls this launcher script.
 
 After compilation, a series of tests will be automatically executed. The build will stop if any test fails. Whenever you want to ignore the tests and build the program anyway, you can call Gradle with the flag ``-x test``.
 
